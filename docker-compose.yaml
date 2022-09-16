@@ -1,0 +1,10 @@
+version: "3.4"
+services:
+  node-console:
+    image: "node:10"
+    working_dir: "/var/www/server/node"
+    command: 'bash -c "npm install && npm run start"'
+    ports:
+      - "4242:4242"
+    volumes:
+      - "./usage-based-subscriptions:/var/www/"

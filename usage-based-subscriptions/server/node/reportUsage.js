@@ -13,9 +13,9 @@ const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 // usage for the day. If you aren't storing subscription item IDs,
 // you can retrieve the subscription and check for subscription items
 // https://stripe.com/docs/api/subscriptions/object#subscription_object-items.
-const subscriptionItemID = '';
+const subscriptionItemID = 'si_MRUecOuXnSArgc';
 // The usage number you've been keeping track of in your own database for the last 24 hours.
-const usageQuantity = 100;
+const usageQuantity = 30;
 
 // The idempotency key allows you to retry this usage record call if it fails.
 const idempotencyKey = uuid();

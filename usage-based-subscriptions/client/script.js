@@ -73,7 +73,6 @@ function stripeElements(publishableKey) {
     paymentForm.addEventListener('submit', function (evt) {
       evt.preventDefault();
       changeLoadingStateprices(true);
-
       // If a previous payment was attempted, get the lastest invoice
       const latestInvoicePaymentIntentStatus = localStorage.getItem(
         'latestInvoicePaymentIntentStatus'
@@ -114,6 +113,8 @@ function createPaymentMethod({ card, isPaymentRetry, invoiceId }) {
 
   let priceId = document.getElementById('priceId').innerHTML.toUpperCase();
 
+  debugger
+
   stripe
     .createPaymentMethod({
       type: 'card',
@@ -124,9 +125,11 @@ function createPaymentMethod({ card, isPaymentRetry, invoiceId }) {
     })
     .then((result) => {
       if (result.error) {
+        debugger
         displayError(result.error);
       } else {
         if (isPaymentRetry) {
+          debugger
           // Update the payment method and retry invoice payment
           retryInvoiceWithNewPaymentMethod(
             customerId,
@@ -136,6 +139,7 @@ function createPaymentMethod({ card, isPaymentRetry, invoiceId }) {
           );
         } else {
           // Create the subscription
+          debugger
           createSubscription(customerId, result.paymentMethod.id, priceId);
         }
       }
